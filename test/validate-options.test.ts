@@ -5,40 +5,17 @@ import getCompiler from "./helpers/getCompiler";
 
 describe("validate options", () => {
   const tests = {
-    format: {
-      success: ["base64", "hex", "rgb", "array"],
-      failure: [true],
-    },
-    size: {
-      success: [1, 100, "original"],
-      failure: [0, -1],
-    },
-    color: {
+    use: {
       success: [
-        "simple",
-        "sqrt",
-        "dominant",
-        "#000",
-        "#038281",
-        "#03828110",
-        { r: 2, g: 120, b: 24 },
-        "red",
+        "file-loader",
+        { loader: "file-loader" },
+        { loader: "file-loader", options: { name: "[path][name].[ext]" } },
       ],
-      failure: [true, "#0", "#MMMMMM"],
+      failure: [{ options: { name: "[path][name].[ext]" } }, true],
     },
-    backgroundColor: {
-      success: ["#000", "#038281", { r: 2, g: 120, b: 24 }, "red"],
-      failure: [
-        true,
-        "#0",
-        "#MMMMMM",
-        "#03828110",
-        { r: 2, g: 120, b: 24, a: 0.5 },
-      ],
-    },
-    esModule: {
-      success: [true, false],
-      failure: ["true"],
+    resourceQuery: {
+      success: ["test", ["test", "test1"], () => true],
+      failure: [0],
     },
   };
 
@@ -50,7 +27,7 @@ describe("validate options", () => {
     it(`should ${
       type === "success" ? "successfully validate" : "throw an error on"
     } the "${key}" option with ${JSON.stringify(value)} value`, async () => {
-      const compiler = getCompiler({ [key]: value });
+      const compiler = getCompiler({ use: "file-loader", ...{ [key]: value } });
 
       let stats;
 
@@ -58,6 +35,8 @@ describe("validate options", () => {
         stats = await compile(compiler);
       } finally {
         if (type === "success") {
+          if ((stats as webpack.Stats).hasErrors())
+            console.log((stats as webpack.Stats).compilation.errors);
           expect((stats as webpack.Stats).hasErrors()).toBe(false);
         } else if (type === "failure") {
           const {

@@ -3,7 +3,7 @@ import path from "path";
 import { Volume, createFsFromVolume } from "memfs";
 import webpack from "webpack";
 
-export default (loaderOptions?: any) => {
+export default (loaderOptions?: any, useUrlLoader = false) => {
   const fullConfig = {
     mode: "development",
     devtool: false,
@@ -19,6 +19,13 @@ export default (loaderOptions?: any) => {
         {
           test: /(png|jpg|svg)/i,
           rules: [
+            ...(useUrlLoader
+              ? [
+                  {
+                    loader: "url-loader",
+                  },
+                ]
+              : []),
             {
               loader: path.resolve(__dirname, "../../dist"),
               options: loaderOptions,

@@ -31,6 +31,7 @@ interface OPTIONS {
   resourceQuery: RuleSetCondition;
 }
 
+export const raw = false;
 export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
 
@@ -46,6 +47,8 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
     this.resourceQuery,
     options.resourceQuery
   );
+
+  console.log(conditionsMet);
 
   if (!conditionsMet) return content;
 
@@ -72,6 +75,8 @@ function checkConditions(
   resourceQuery: string,
   resourceQueryConditions: RuleSetCondition
 ) {
+  if (resourceQueryConditions === undefined) return true;
+
   const query = queryString.parse(resourceQuery);
 
   if (typeof resourceQueryConditions === "function")
