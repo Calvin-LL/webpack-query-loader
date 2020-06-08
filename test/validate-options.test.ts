@@ -14,7 +14,7 @@ describe("validate options", () => {
       failure: [{ options: { name: "[path][name].[ext]" } }, true],
     },
     resourceQuery: {
-      success: ["test", ["test", "test1"], () => true],
+      success: ["test", ["test", "!test1"], () => true],
       failure: [0],
     },
   };
@@ -35,8 +35,6 @@ describe("validate options", () => {
         stats = await compile(compiler);
       } finally {
         if (type === "success") {
-          if ((stats as webpack.Stats).hasErrors())
-            console.log((stats as webpack.Stats).compilation.errors);
           expect((stats as webpack.Stats).hasErrors()).toBe(false);
         } else if (type === "failure") {
           const {

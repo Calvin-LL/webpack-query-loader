@@ -59,4 +59,92 @@ describe('"resourceQuery" option', () => {
       execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
     ).toMatchSnapshot("result");
   });
+
+  it("should work with multiple queries, both true", async () => {
+    const compiler = getCompiler({
+      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      resourceQuery: ["!test3", "test"],
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
+    ).toMatchSnapshot("result");
+  });
+
+  it("should work with multiple queries, one false", async () => {
+    const compiler = getCompiler(
+      {
+        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        resourceQuery: ["!test3", "!test"],
+      },
+      true
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
+    ).toMatchSnapshot("result");
+  });
+
+  it("should work with multiple queries, both false", async () => {
+    const compiler = getCompiler(
+      {
+        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        resourceQuery: ["test3", "!test"],
+      },
+      true
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
+    ).toMatchSnapshot("result");
+  });
+
+  it("should work with a function that returns false", async () => {
+    const compiler = getCompiler(
+      {
+        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        resourceQuery: () => false,
+      },
+      true
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
+    ).toMatchSnapshot("result");
+  });
+
+  it("should work with a function that returns true", async () => {
+    const compiler = getCompiler({
+      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      resourceQuery: () => true,
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
+    ).toMatchSnapshot("result");
+  });
+
+  it("should call the function with the correct arguments", async () => {
+    const mockResourceQuery = jest.fn().mockReturnValue(true);
+
+    const compiler = getCompiler({
+      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      resourceQuery: function (
+        resource: string,
+        resourceQuery: string,
+        query: object
+      ) {
+        return mockResourceQuery(resource, resourceQuery, query);
+      },
+    });
+    await compile(compiler);
+
+    expect(mockResourceQuery).toHaveBeenCalled();
+    expect(mockResourceQuery).toMatchSnapshot();
+  });
 });
