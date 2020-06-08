@@ -48,8 +48,6 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
     options.resourceQuery
   );
 
-  console.log(conditionsMet);
-
   if (!conditionsMet) return content;
 
   // code from https://github.com/webpack-contrib/url-loader
@@ -79,10 +77,10 @@ function checkConditions(
 
   const query = queryString.parse(resourceQuery);
 
-  if (typeof resourceQueryConditions === "function")
+  if (typeof resourceQueryConditions === "function") {
     return resourceQueryConditions(resource, resourceQuery, query);
-  else if (typeof resourceQueryConditions === "object") {
-    return resourceQueryConditions.some((parameter) =>
+  } else if (typeof resourceQueryConditions === "object") {
+    return resourceQueryConditions.every((parameter) =>
       checkQueryParameter(parameter, query)
     );
   } else if (typeof resourceQueryConditions === "string") {
