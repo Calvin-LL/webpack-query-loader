@@ -1,0 +1,33 @@
+{
+  "additionalProperties": true,
+  "type": "object",
+  "properties": {
+    "use": {
+      "description": "Loader",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "loader": { "type": "string" },
+            "options": { "type": "object", "additionalProperties": true }
+          }
+        }
+      ]
+    },
+    "resourceQuery": {
+      "description": "A condition that needs to be satisfied before the loader runs",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array"
+        },
+        { "instanceof": "Function" }
+      ]
+    }
+  }
+}

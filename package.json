@@ -1,0 +1,66 @@
+{
+  "name": "webwork-query-loader",
+  "version": "1.0.0",
+  "description": "Run loaders depending on their query",
+  "keywords": [
+    "webpack",
+    "loader",
+    "conditional",
+    "query",
+    "resourceQuery",
+    "parameter",
+    "url"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && jest",
+    "release": "standard-version"
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "author": {
+    "name": "Calvin Liang",
+    "email": "npm@calvin.sh",
+    "url": "https://calvin.sh"
+  },
+  "repository": "CoolCyberBrain/webpack-image-placeholder-loader",
+  "bugs": "https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/issues",
+  "homepage": "https://github.com/CoolCyberBrain/webpack-image-placeholder-loader",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4.0.0 || ^5.0.0"
+  },
+  "dependencies": {
+    "loader-runner": "^3.1.0",
+    "loader-utils": "^2.0.0",
+    "query-string": "^6.13.0",
+    "schema-utils": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@types/loader-utils": "^2.0.0",
+    "@types/node": "^14.0.11",
+    "@types/webpack": "^4.41.17",
+    "commitizen": "^4.1.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "standard-version": "^8.0.0",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0"
+  }
+}
