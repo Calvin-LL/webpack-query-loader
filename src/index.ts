@@ -1,5 +1,4 @@
 import loaderUtils from "loader-utils";
-import queryString from "query-string";
 import validateOptions from "schema-utils";
 import { JSONSchema7 } from "schema-utils/declarations/validate";
 import { loader } from "webpack";
@@ -34,6 +33,9 @@ interface OPTIONS {
 export const raw = true;
 export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
+  const params = this.resourceQuery
+    ? loaderUtils.parseQuery(this.resourceQuery)
+    : undefined;
 
   if (!options) throw "Options Not Found";
 
@@ -45,6 +47,7 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const conditionsMet = checkConditions(
     this.resource,
     this.resourceQuery,
+    params,
     options.resourceQuery
   );
 
@@ -71,11 +74,11 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
 function checkConditions(
   resource: string,
   resourceQuery: string,
+  query: loaderUtils.OptionObject | undefined,
   resourceQueryConditions: RuleSetCondition
 ) {
   if (resourceQueryConditions === undefined) return true;
-
-  const query = queryString.parse(resourceQuery);
+  if (query === undefined) return false;
 
   if (typeof resourceQueryConditions === "function") {
     return resourceQueryConditions(resource, resourceQuery, query);
