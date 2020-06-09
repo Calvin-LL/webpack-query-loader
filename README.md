@@ -22,6 +22,8 @@ yarn add webpack-query-loader --dev
 
 ## Usage
 
+All queries (i.e. `?value=2`) will also be passed down to the loader.
+
 ```javascript
 import png from "./some_pic.png?inline";
 ```
