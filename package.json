@@ -11,7 +11,7 @@
     "parameter",
     "url"
   ],
-  "main": "dist/index.js",
+  "main": "dist/cjs.js",
   "files": [
     "dist"
   ],
