@@ -7,4 +7,5 @@ module.exports = {
   },
   testMatch: ["<rootDir>/test/**/*.test.ts"],
   testEnvironment: "node",
+  snapshotSerializers: ["<rootDir>/test/snapshotSerializers.js"],
 };
