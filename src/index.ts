@@ -31,7 +31,7 @@ interface OPTIONS {
   resourceQuery: RuleSetCondition;
 }
 
-export const raw = false;
+export const raw = true;
 export default function (this: loader.LoaderContext, content: ArrayBuffer) {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
 
