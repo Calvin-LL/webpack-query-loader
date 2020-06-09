@@ -1,4 +1,4 @@
-# webwork-query-loader
+# webpack-query-loader
 
 Run loaders depending on the query.
 
@@ -11,13 +11,13 @@ This loader is an attempt to solve problems like [this issue](https://github.com
 Install with npm:
 
 ```bash
-npm install --save-dev webwork-query-loader
+npm install --save-dev webpack-query-loader
 ```
 
 Install with yarn:
 
 ```bash
-yarn add webwork-query-loader --dev
+yarn add webpack-query-loader --dev
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ module.exports = {
         test: /(png|jpe?g|svg)/i,
         rules: [
           {
-            loader: "webwork-query-loader",
+            loader: "webpack-query-loader",
             options: {
               resourceQuery: "inline",
               use: {
@@ -44,7 +44,7 @@ module.exports = {
             },
           },
           {
-            loader: "webwork-query-loader",
+            loader: "webpack-query-loader",
             options: {
               resourceQuery: "!inline",
               use: {
