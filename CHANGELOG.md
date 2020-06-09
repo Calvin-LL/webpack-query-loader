@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/compare/v1.0.3...v1.0.4) (2020-06-09)
+
+
+### Bug Fixes
+
+* outputs the incorrect type of data when bypassed in chain ([6d33100](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/commit/6d33100c87b71932417e85266f9b1548dc9e95af))
+
 ### [1.0.3](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/compare/v1.0.2...v1.0.3) (2020-06-09)
 
 ### [1.0.2](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/compare/v1.0.1...v1.0.2) (2020-06-09)
