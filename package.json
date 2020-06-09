@@ -1,6 +1,6 @@
 {
   "name": "webwork-query-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Run loaders depending on their query",
   "keywords": [
     "webpack",
