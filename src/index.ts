@@ -96,11 +96,7 @@ function checkQueryParameter(parameter: string, query: object) {
 
     return !Object.keys(query).includes(actualParameter);
   } else {
-    let actualParameter = parameter;
-
-    if (parameter.startsWith("\\!")) actualParameter = parameter.substring(1);
-
-    return Object.keys(query).includes(actualParameter);
+    return Object.keys(query).includes(parameter);
   }
 }
 

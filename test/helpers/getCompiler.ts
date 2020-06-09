@@ -3,12 +3,16 @@ import path from "path";
 import { Volume, createFsFromVolume } from "memfs";
 import webpack from "webpack";
 
-export default (loaderOptions?: any, useUrlLoader = false) => {
+export default (
+  loaderOptions?: any,
+  useUrlLoader = false,
+  filename = "simple.js"
+) => {
   const fullConfig = {
     mode: "development",
     devtool: false,
     context: path.resolve(__dirname, "../fixtures"),
-    entry: path.resolve(__dirname, "../fixtures", "simple.js"),
+    entry: path.resolve(__dirname, "../fixtures", filename),
     output: {
       path: path.resolve(__dirname, "../outputs"),
       filename: "[name].bundle.js",

@@ -111,12 +111,6 @@ resourceQuery: "!run-me" // only run the loader in `use` if the import DOES NOT 
 or
 
 ```
-resourceQuery: "\\!run-me" // only run the loader in `use` if the import has the query `?!run-me`
-```
-
-or
-
-```
 resourceQuery: ["run-me", "!dont-run-me"] // only run the loader in `use` if the import has query `?run-me` AND no query `!dont-run-me`. For example "./some_pic.png?run-me" would work but "./some_pic.png?run-me&dont-run-me" would not.
 ```
 
