@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.8](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/compare/v1.0.7...v1.0.8) (2020-06-11)
+
+
+### Bug Fixes
+
+* add pitch function ([#4](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/issues/4)) ([863bbfa](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/commit/863bbfa408c529504d8e9e4638edf3d5745ad94d))
+
 ### [1.0.7](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/compare/v1.0.6...v1.0.7) (2020-06-11)
 
 ### [1.0.6](https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/compare/v1.0.5...v1.0.6) (2020-06-09)
