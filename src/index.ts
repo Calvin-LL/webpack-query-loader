@@ -41,6 +41,13 @@ export function pitch(
 ) {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
 
+  if (!options) throw "Options Not Found";
+
+  validateOptions(schema as JSONSchema7, options, {
+    name: "Query Loader",
+    baseDataPath: "options",
+  });
+
   // code from https://github.com/webpack-contrib/url-loader
   // Normalize the fallback.
   const { loader: fallbackLoader, options: fallbackOptions } = normalizeUse(
@@ -113,6 +120,7 @@ function normalizeContent(source: string | Buffer, raw: boolean) {
   if (!raw && Buffer.isBuffer(source)) return utf8BufferToString(source);
   else if (raw && typeof source === "string")
     return Buffer.from(source, "utf-8");
+  return source;
 }
 
 // from https://github.com/webpack/loader-runner/blob/master/lib/LoaderRunner.js
@@ -157,7 +165,7 @@ function checkQueryParameter(parameter: string, query: object) {
   }
 }
 
-function normalizeUse(use: RuleSetUseItem | undefined) {
+function normalizeUse(use: RuleSetUseItem) {
   let loaderString;
   let options = {};
 
