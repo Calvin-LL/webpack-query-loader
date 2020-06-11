@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`complex loaders should work when multiple loaders with pitch stage is present: result 1`] = `
+Object {
+  "data": Array [
+    116,
+    101,
+    115,
+    116,
+  ],
+  "type": "Buffer",
+}
+`;
+
+exports[`complex loaders should work when multiple loaders with pitch stage is present: warnings 1`] = `
+Array [
+  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
+loader1-main test],
+  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
+loader1-pitch /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js??ref--5-1!/Users/Calvin/GitHub/webpack-query-loader/test/fixtures/test.txt?test  {}],
+  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
+loader2-main test],
+  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
+loader2-pitch /Users/Calvin/GitHub/webpack-query-loader/test/fixtures/test.txt?test /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js??ref--5-0 {}],
+]
+`;

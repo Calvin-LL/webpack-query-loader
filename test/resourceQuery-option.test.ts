@@ -8,7 +8,7 @@ import readAsset from "./helpers/readAsset";
 describe('"resourceQuery" option', () => {
   it("should work with a query that is present", async () => {
     const compiler = getCompiler({
-      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      use: "file-loader",
       resourceQuery: "test",
     });
     const stats = await compile(compiler);
@@ -21,7 +21,7 @@ describe('"resourceQuery" option', () => {
   it("should work with a query that is not present", async () => {
     const compiler = getCompiler(
       {
-        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        use: "file-loader",
         resourceQuery: "test2",
       },
       true
@@ -36,7 +36,7 @@ describe('"resourceQuery" option', () => {
   it("should work with a negative query that is present", async () => {
     const compiler = getCompiler(
       {
-        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        use: "file-loader",
         resourceQuery: "!test",
       },
       true
@@ -50,7 +50,7 @@ describe('"resourceQuery" option', () => {
 
   it("should work with a negative query that is not present", async () => {
     const compiler = getCompiler({
-      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      use: "file-loader",
       resourceQuery: "!test3",
     });
     const stats = await compile(compiler);
@@ -62,7 +62,7 @@ describe('"resourceQuery" option', () => {
 
   it("should work with multiple queries, both true", async () => {
     const compiler = getCompiler({
-      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      use: "file-loader",
       resourceQuery: ["!test3", "test"],
     });
     const stats = await compile(compiler);
@@ -75,7 +75,7 @@ describe('"resourceQuery" option', () => {
   it("should work with multiple queries, one false", async () => {
     const compiler = getCompiler(
       {
-        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        use: "file-loader",
         resourceQuery: ["!test3", "!test"],
       },
       true
@@ -90,7 +90,7 @@ describe('"resourceQuery" option', () => {
   it("should work with multiple queries, both false", async () => {
     const compiler = getCompiler(
       {
-        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        use: "file-loader",
         resourceQuery: ["test3", "!test"],
       },
       true
@@ -105,7 +105,7 @@ describe('"resourceQuery" option', () => {
   it("should work with a function that returns false", async () => {
     const compiler = getCompiler(
       {
-        use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+        use: "file-loader",
         resourceQuery: () => false,
       },
       true
@@ -119,7 +119,7 @@ describe('"resourceQuery" option', () => {
 
   it("should work with a function that returns true", async () => {
     const compiler = getCompiler({
-      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      use: "file-loader",
       resourceQuery: () => true,
     });
     const stats = await compile(compiler);
@@ -133,7 +133,7 @@ describe('"resourceQuery" option', () => {
     const mockResourceQuery = jest.fn().mockReturnValue(true);
 
     const compiler = getCompiler({
-      use: { loader: "file-loader", options: { name: "[path][name].[ext]" } },
+      use: "file-loader",
       resourceQuery: function (
         resource: string,
         resourceQuery: string,
