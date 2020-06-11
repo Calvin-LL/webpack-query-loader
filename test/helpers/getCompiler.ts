@@ -31,14 +31,13 @@ export default (
                 ]
               : []),
             {
-              loader: path.resolve(__dirname, "../../dist"),
+              loader: path.resolve(__dirname, "../../dist/cjs.js"),
               options: loaderOptions,
             },
           ],
         },
       ],
     },
-    plugins: [],
   };
 
   const compiler = webpack(fullConfig as webpack.Configuration);
