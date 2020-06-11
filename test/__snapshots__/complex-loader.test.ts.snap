@@ -14,13 +14,13 @@ Object {
 
 exports[`complex loaders should work when multiple loaders with pitch stage is present: warnings 1`] = `
 Array [
-  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
+  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
 loader1-main test],
-  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
-loader1-pitch /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js??ref--5-1!/Users/Calvin/GitHub/webpack-query-loader/test/fixtures/test.txt?test  {}],
-  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
+  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
+loader1-pitch <rootDir>/dist/cjs.js??ref--5-1!<rootDir>/test/fixtures/test.txt?test  {}],
+  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
 loader2-main test],
-  [ModuleWarning: Module Warning (from /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js):
-loader2-pitch /Users/Calvin/GitHub/webpack-query-loader/test/fixtures/test.txt?test /Users/Calvin/GitHub/webpack-query-loader/dist/cjs.js??ref--5-0 {}],
+  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
+loader2-pitch <rootDir>/test/fixtures/test.txt?test <rootDir>/dist/cjs.js??ref--5-0 {}],
 ]
 `;
