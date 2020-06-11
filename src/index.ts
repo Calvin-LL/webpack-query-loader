@@ -1,6 +1,7 @@
 import loaderUtils from "loader-utils";
 import validateOptions from "schema-utils";
 import { JSONSchema7 } from "schema-utils/declarations/validate";
+import { RawSourceMap } from "source-map";
 import { loader } from "webpack";
 
 import schema from "./options.json";
@@ -31,7 +32,43 @@ interface OPTIONS {
 }
 
 export const raw = true;
-export default function (this: loader.LoaderContext, content: ArrayBuffer) {
+
+export function pitch(
+  this: loader.LoaderContext,
+  remainingRequest: string,
+  precedingRequest: string,
+  data: any
+) {
+  const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
+
+  // code from https://github.com/webpack-contrib/url-loader
+  // Normalize the fallback.
+  const { loader: fallbackLoader, options: fallbackOptions } = normalizeUse(
+    options?.use
+  );
+
+  // Require the fallback.
+  const fallback = require(fallbackLoader).pitch;
+
+  if (!fallback) return undefined;
+
+  // Call the fallback, passing a copy of the loader context. The copy has the query replaced. This way, the fallback
+  // loader receives the query which was intended for it instead of the query which was intended for url-loader.
+  const fallbackLoaderContext = { ...this, query: fallbackOptions };
+
+  return fallback.call(
+    fallbackLoaderContext,
+    remainingRequest,
+    precedingRequest,
+    data
+  );
+}
+
+export default function (
+  this: loader.LoaderContext,
+  source: string | Buffer,
+  sourceMap?: RawSourceMap
+) {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
   const params = this.resourceQuery
     ? loaderUtils.parseQuery(this.resourceQuery)
@@ -51,7 +88,7 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
     options.resourceQuery
   );
 
-  if (!conditionsMet) return content;
+  if (!conditionsMet) return source;
 
   // code from https://github.com/webpack-contrib/url-loader
   // Normalize the fallback.
@@ -64,11 +101,28 @@ export default function (this: loader.LoaderContext, content: ArrayBuffer) {
 
   // Call the fallback, passing a copy of the loader context. The copy has the query replaced. This way, the fallback
   // loader receives the query which was intended for it instead of the query which was intended for url-loader.
-  const fallbackLoaderContext = Object.assign({}, this, {
-    query: fallbackOptions,
-  });
+  const fallbackLoaderContext = { ...this, query: fallbackOptions };
 
-  return fallback.call(fallbackLoaderContext, content);
+  const normalizedContent = normalizeContent(source, fallback.raw);
+
+  return fallback.call(fallbackLoaderContext, normalizedContent, sourceMap);
+}
+
+// from https://github.com/webpack/loader-runner/blob/master/lib/LoaderRunner.js
+function normalizeContent(source: string | Buffer, raw: boolean) {
+  if (!raw && Buffer.isBuffer(source)) return utf8BufferToString(source);
+  else if (raw && typeof source === "string")
+    return Buffer.from(source, "utf-8");
+}
+
+// from https://github.com/webpack/loader-runner/blob/master/lib/LoaderRunner.js
+function utf8BufferToString(buf: Buffer) {
+  var str = buf.toString("utf-8");
+  if (str.charCodeAt(0) === 0xfeff) {
+    return str.substr(1);
+  } else {
+    return str;
+  }
 }
 
 function checkConditions(
@@ -103,7 +157,7 @@ function checkQueryParameter(parameter: string, query: object) {
   }
 }
 
-function normalizeUse(use: RuleSetUseItem) {
+function normalizeUse(use: RuleSetUseItem | undefined) {
   let loaderString;
   let options = {};
 
