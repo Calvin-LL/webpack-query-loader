@@ -8,21 +8,22 @@ export default (
   useUrlLoader = false,
   filename = "simple.js"
 ) => {
+  const fixturesDir = path.resolve(__dirname, "..", "fixtures");
   const fullConfig = {
     mode: "development",
     devtool: false,
-    context: path.resolve(__dirname, "../fixtures"),
-    entry: path.resolve(__dirname, "../fixtures", filename),
+    context: path.resolve(__dirname, "..", "fixtures"),
+    entry: path.resolve(fixturesDir, filename),
     output: {
-      path: path.resolve(__dirname, "../outputs"),
+      path: path.resolve(__dirname, "..", "/outputs"),
       filename: "[name].bundle.js",
       chunkFilename: "[name].chunk.js",
     },
     module: {
       rules: [
         {
-          test: /(png|jpg|svg)/i,
-          rules: [
+          test: /\.(png|jpg|svg)/i,
+          use: [
             ...(useUrlLoader
               ? [
                   {
@@ -31,14 +32,32 @@ export default (
                 ]
               : []),
             {
-              loader: path.resolve(__dirname, "../../dist"),
+              loader: path.resolve(__dirname, "..", "..", "dist", "cjs.js"),
               options: loaderOptions,
+            },
+          ],
+        },
+        {
+          test: /\.txt/i,
+          use: [
+            {
+              loader: path.resolve(__dirname, "..", "..", "dist", "cjs.js"),
+              options: {
+                resourceQuery: "test",
+                use: path.resolve(fixturesDir, "testLoader1.js"),
+              },
+            },
+            {
+              loader: path.resolve(__dirname, "..", "..", "dist", "cjs.js"),
+              options: {
+                resourceQuery: "test",
+                use: path.resolve(fixturesDir, "testLoader2.js"),
+              },
             },
           ],
         },
       ],
     },
-    plugins: [],
   };
 
   const compiler = webpack(fullConfig as webpack.Configuration);

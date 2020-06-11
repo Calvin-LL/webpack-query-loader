@@ -34,7 +34,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /(png|jpe?g|svg)/i,
+        test: /\.(png|jpe?g|svg)/i,
         use: [
           {
             loader: "webpack-query-loader",
