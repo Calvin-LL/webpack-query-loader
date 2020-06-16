@@ -3,7 +3,7 @@ const path = require("path");
 const projectRoot = path.resolve(__dirname, "..");
 
 module.exports = {
-  print: function print(val) {
+  print(val) {
     if (typeof val === "string")
       return `"${val.replace(new RegExp(projectRoot, "g"), "<rootDir>")}"`;
     if (val instanceof Error)
