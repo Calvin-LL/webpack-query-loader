@@ -1,4 +1,6 @@
-# webpack-query-loader [![npm](https://img.shields.io/npm/v/webpack-query-loader)](https://www.npmjs.com/package/webpack-query-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
+# webpack-query-loader
+
+[![npm](https://img.shields.io/npm/v/webpack-query-loader)](https://www.npmjs.com/package/webpack-query-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 Run loaders depending on the query.
 
