@@ -40,6 +40,9 @@ export function pitch(
   data: any
 ) {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
+  const params = this.resourceQuery
+    ? loaderUtils.parseQuery(this.resourceQuery)
+    : undefined;
 
   if (!options) throw "Options Not Found";
 
@@ -47,6 +50,15 @@ export function pitch(
     name: "Query Loader",
     baseDataPath: "options",
   });
+
+  const conditionsMet = checkConditions(
+    this.resource,
+    this.resourceQuery,
+    params,
+    options.resourceQuery
+  );
+
+  if (!conditionsMet) return undefined;
 
   // code from https://github.com/webpack-contrib/url-loader
   // Normalize the fallback.
@@ -57,7 +69,7 @@ export function pitch(
   // Require the fallback.
   const fallback = require(fallbackLoader).pitch;
 
-  if (!fallback) return undefined;
+  if (!fallback || typeof fallback !== "function") return undefined;
 
   // Call the fallback, passing a copy of the loader context. The copy has the query replaced. This way, the fallback
   // loader receives the query which was intended for it instead of the query which was intended for url-loader.
@@ -105,6 +117,8 @@ export default function (
 
   // Require the fallback.
   const fallback = require(fallbackLoader);
+
+  if (!fallback || typeof fallback !== "function") return source;
 
   // Call the fallback, passing a copy of the loader context. The copy has the query replaced. This way, the fallback
   // loader receives the query which was intended for it instead of the query which was intended for url-loader.
