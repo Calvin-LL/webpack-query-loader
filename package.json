@@ -1,6 +1,6 @@
 {
   "name": "webpack-query-loader",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Run loaders depending on their query",
   "keywords": [
     "webpack",
@@ -30,9 +30,9 @@
     "email": "npm@calvin.sh",
     "url": "https://calvin.sh"
   },
-  "repository": "CoolCyberBrain/webpack-image-placeholder-loader",
-  "bugs": "https://github.com/CoolCyberBrain/webpack-image-placeholder-loader/issues",
-  "homepage": "https://github.com/CoolCyberBrain/webpack-image-placeholder-loader",
+  "repository": "CoolCyberBrain/webpack-query-loader",
+  "bugs": "https://github.com/CoolCyberBrain/webpack-query-loader/issues",
+  "homepage": "https://github.com/CoolCyberBrain/webpack-query-loader",
   "license": "MIT",
   "engines": {
     "node": ">= 10.13.0"
