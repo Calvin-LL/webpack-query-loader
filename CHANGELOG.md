@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.12](https://github.com/CoolCyberBrain/webpack-query-loader/compare/v1.0.11...v1.0.12) (2020-06-18)
+
+
+### Bug Fixes
+
+* pitch should not run if conditions are not met ([b9f6ac8](https://github.com/CoolCyberBrain/webpack-query-loader/commit/b9f6ac82fef125fd9b1dc9a78e6349a0c3191827))
+
 ### [1.0.11](https://github.com/CoolCyberBrain/webpack-query-loader/compare/v1.0.10...v1.0.11) (2020-06-18)
 
 ### [1.0.10](https://github.com/CoolCyberBrain/webpack-query-loader/compare/v1.0.9...v1.0.10) (2020-06-17)
