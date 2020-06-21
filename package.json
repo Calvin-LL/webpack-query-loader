@@ -1,6 +1,6 @@
 {
   "name": "webpack-query-loader",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Run loaders depending on their query",
   "keywords": [
     "webpack",
