@@ -10,9 +10,9 @@ export default (
 ) => {
   const fixturesDir = path.resolve(__dirname, "..", "fixtures");
   const fullConfig = {
-    mode: "development",
+    mode: "production",
     devtool: false,
-    context: path.resolve(__dirname, "..", "fixtures"),
+    context: fixturesDir,
     entry: path.resolve(fixturesDir, filename),
     output: {
       path: path.resolve(__dirname, "..", "/outputs"),
