@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/CoolCyberBrain/webpack-query-loader/compare/v1.0.13...v2.0.0) (2020-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* imports without query string will now be matched against `resourceQuery`
+
+### Bug Fixes
+
+* imports with no queries not being considered at all ([20ba35d](https://github.com/CoolCyberBrain/webpack-query-loader/commit/20ba35d1648f165d7fba0648a824864112a2e767))
+
 ### [1.0.13](https://github.com/CoolCyberBrain/webpack-query-loader/compare/v1.0.12...v1.0.13) (2020-06-21)
 
 ### [1.0.12](https://github.com/CoolCyberBrain/webpack-query-loader/compare/v1.0.11...v1.0.12) (2020-06-18)
