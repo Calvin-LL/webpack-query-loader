@@ -54,7 +54,7 @@ export function pitch(
   const conditionsMet = checkConditions(
     this.resource,
     this.resourceQuery,
-    params,
+    params ?? {},
     options.resourceQuery
   );
 
@@ -103,7 +103,7 @@ export default function (
   const conditionsMet = checkConditions(
     this.resource,
     this.resourceQuery,
-    params,
+    params ?? {},
     options.resourceQuery
   );
 
@@ -150,11 +150,10 @@ function utf8BufferToString(buf: Buffer) {
 function checkConditions(
   resource: string,
   resourceQuery: string,
-  query: loaderUtils.OptionObject | undefined,
+  query: loaderUtils.OptionObject,
   resourceQueryConditions: RuleSetCondition
 ) {
   if (resourceQueryConditions === undefined) return true;
-  if (query === undefined) return false;
 
   if (typeof resourceQueryConditions === "function") {
     return resourceQueryConditions(resource, resourceQuery, query);
