@@ -27,7 +27,7 @@ describe("validate options", () => {
     it(`should ${
       type === "success" ? "successfully validate" : "throw an error on"
     } the "${key}" option with ${JSON.stringify(value)} value`, async () => {
-      const compiler = getCompiler({ use: "file-loader", ...{ [key]: value } });
+      const compiler = getCompiler({ use: "file-loader", [key]: value });
 
       let stats;
 
