@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/webpack-query-loader)](https://www.npmjs.com/package/webpack-query-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
 
-Run loaders depending on the query.
+Run loaders depending on the query string.
 
 If you're trying to use `resourceQuery` in webpack v4 you're in the right place. If you're using [webpack v5](https://github.com/webpack/webpack/issues/10552), consider using the built in `resourceQuery` instead of this loader
 
@@ -24,7 +24,7 @@ yarn add webpack-query-loader --dev
 
 ## Usage
 
-All queries (i.e. `?value=2`) will also be passed down to the loader.
+All query parameters (i.e. `?value=2`) will also be passed down to the loader in `use.loader`.
 
 ```javascript
 import png from "./some_pic.png?inline";
@@ -103,19 +103,19 @@ use: {
 The `resourceQuery` option can be in one of these formats
 
 ```
-resourceQuery: "run-me" // only run the loader in `use` if the import has query `?run-me`
+resourceQuery: "run-me" // only run the loader in `use` if the import has query parameter `run-me`
 ```
 
 or
 
 ```
-resourceQuery: "!run-me" // only run the loader in `use` if the import DOES NOT have the query `?run-me`
+resourceQuery: "!run-me" // only run the loader in `use` if the import DOES NOT have query parameter `run-me`
 ```
 
 or
 
 ```
-resourceQuery: ["run-me", "!dont-run-me"] // only run the loader in `use` if the import has query `?run-me` AND no query `!dont-run-me`. For example "./some_pic.png?run-me" would work but "./some_pic.png?run-me&dont-run-me" would not.
+resourceQuery: ["run-me", "!dont-run-me"] // only run the loader in `use` if the import has query parameter `run-me` AND no query parameter `dont-run-me`. For example "./some_pic.png?run-me" would work but "./some_pic.png?run-me&dont-run-me" would not.
 ```
 
 or
@@ -124,9 +124,16 @@ or
 // resource is the whole import string e.g "./some_pic.png?run-me"
 // resourceQuery is the whole query string e.g "?run-me"
 // query is an object of the broken down query string e.g "{ run-me: null }"
+// query is empty (e.g. `{}`) if no query string exist in the import statement
 // returns true to run the loader, false to skip
 (resource, resourceQuery, query) => {
   ...
   return true;
 }
 ```
+
+#### Notes:
+
+For example, this query string `?height=10&width=10&resize` has query parameters `height`, `width`, and `resize`
+
+An import statement without a query string is considered not to have any query parameter
