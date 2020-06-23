@@ -1,6 +1,6 @@
 # webpack-query-loader
 
-[![npm](https://img.shields.io/npm/v/webpack-query-loader)](https://www.npmjs.com/package/webpack-query-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
+[![npm](https://img.shields.io/npm/v/webpack-query-loader?style=flat)](https://www.npmjs.com/package/webpack-query-loader) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 Run loaders depending on the query string.
 
@@ -13,7 +13,7 @@ This loader is an attempt to solve problems like [this issue](https://github.com
 Install with npm:
 
 ```bash
-npm install --save-dev webpack-query-loader
+npm install webpack-query-loader --save-dev
 ```
 
 Install with yarn:
@@ -29,6 +29,8 @@ All query parameters (i.e. `?value=2`) will also be passed down to the loader in
 ```javascript
 import png from "./some_pic.png?inline";
 ```
+
+#### webpack.config.js
 
 ```javascript
 module.exports = {
@@ -66,10 +68,10 @@ module.exports = {
 
 ## Options
 
-|                 Name                  |              Type              |  Default  |                     Description                      |
-| :-----------------------------------: | :----------------------------: | :-------: | :--------------------------------------------------: |
-|           **[`use`](#use)**           |       `{string\|object}`       | undefined |                  The loader to use                   |
-| **[`resourceQuery`](#resourceQuery)** | `{string\|string[]\|function}` | undefined | The conditions that must match for the loader to run |
+|                 Name                  |             Type             |  Default  |                     Description                      |
+| :-----------------------------------: | :--------------------------: | :-------: | :--------------------------------------------------: |
+|           **[`use`](#use)**           |       `string\|object`       | undefined |                  The loader to use                   |
+| **[`resourceQuery`](#resourceQuery)** | `string\|string[]\|function` | undefined | The conditions that must match for the loader to run |
 
 ### `use`
 
