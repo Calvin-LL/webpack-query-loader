@@ -71,7 +71,7 @@ module.exports = {
 |                 Name                  |             Type             |  Default  |                     Description                      |
 | :-----------------------------------: | :--------------------------: | :-------: | :--------------------------------------------------: |
 |           **[`use`](#use)**           |       `string\|object`       | undefined |                  The loader to use                   |
-| **[`resourceQuery`](#resourceQuery)** | `string\|string[]\|function` | undefined | The conditions that must match for the loader to run |
+| **[`resourceQuery`](#resourcequery)** | `string\|string[]\|function` | undefined | The conditions that must match for the loader to run |
 
 ### `use`
 
