@@ -1,6 +1,6 @@
 import loaderUtils from "loader-utils";
-import validateOptions from "schema-utils";
-import { JSONSchema7 } from "schema-utils/declarations/validate";
+import { validate } from "schema-utils";
+import { Schema } from "schema-utils/declarations/validate";
 import { RawSourceMap } from "source-map";
 import { loader } from "webpack";
 
@@ -46,7 +46,7 @@ export function pitch(
 
   if (!options) throw "Options Not Found";
 
-  validateOptions(schema as JSONSchema7, options, {
+  validate(schema as Schema, options, {
     name: "Query Loader",
     baseDataPath: "options",
   });
@@ -95,7 +95,7 @@ export default function (
 
   if (!options) throw "Options Not Found";
 
-  validateOptions(schema as JSONSchema7, options, {
+  validate(schema as Schema, options, {
     name: "Query Loader",
     baseDataPath: "options",
   });
