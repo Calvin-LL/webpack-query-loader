@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`"use" option should work with "file-loader" value with resourceQuery: result 1`] = `"58468a78998d98229df03bef5df7fc4e.jpg"`;
+exports[`v4 "use" option should work with "file-loader" value with resourceQuery: result 1`] = `"58468a78998d98229df03bef5df7fc4e.jpg"`;
 
-exports[`"use" option should work with "file-loader" value without resourceQuery: result 1`] = `"58468a78998d98229df03bef5df7fc4e.jpg"`;
+exports[`v4 "use" option should work with "file-loader" value without resourceQuery: result 1`] = `"58468a78998d98229df03bef5df7fc4e.jpg"`;
 
-exports[`"use" option should work with "object" value with resourceQuery: result 1`] = `"Macaca_nigra_self-portrait_large.jpg"`;
+exports[`v4 "use" option should work with "object" value with resourceQuery: result 1`] = `"Macaca_nigra_self-portrait_large.jpg"`;
+
+exports[`v5 "use" option should work with "file-loader" value with resourceQuery: result 1`] = `"58468a78998d98229df03bef5df7fc4e.jpg"`;
+
+exports[`v5 "use" option should work with "file-loader" value without resourceQuery: result 1`] = `"58468a78998d98229df03bef5df7fc4e.jpg"`;
+
+exports[`v5 "use" option should work with "object" value with resourceQuery: result 1`] = `"Macaca_nigra_self-portrait_large.jpg"`;

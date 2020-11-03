@@ -5,9 +5,10 @@ import execute from "./helpers/execute";
 import getCompiler from "./helpers/getCompiler";
 import readAsset from "./helpers/readAsset";
 
-describe("no query", () => {
+describe.each([4, 5] as const)("v%d no query", (webpackVersion) => {
   it("should work when no query is present and resourceQuery is true", async () => {
     const compiler = getCompiler(
+      webpackVersion,
       {
         use: "file-loader",
         resourceQuery: "!test",
@@ -15,7 +16,7 @@ describe("no query", () => {
       false,
       "simple-no-query.js"
     );
-    const stats = await compile(compiler);
+    const stats = await compile(webpackVersion, compiler);
 
     expect(
       execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
@@ -24,6 +25,7 @@ describe("no query", () => {
 
   it("should work when no query is present and resourceQuery is false", async () => {
     const compiler = getCompiler(
+      webpackVersion,
       {
         use: "file-loader",
         resourceQuery: "test",
@@ -31,7 +33,7 @@ describe("no query", () => {
       true,
       "simple-no-query.js"
     );
-    const stats = await compile(compiler);
+    const stats = await compile(webpackVersion, compiler);
 
     expect(
       execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
