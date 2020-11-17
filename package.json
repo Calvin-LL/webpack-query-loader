@@ -31,9 +31,9 @@
     "email": "npm@calvin.sh",
     "url": "https://calvin.sh"
   },
-  "repository": "CoolCyberBrain/webpack-query-loader",
-  "bugs": "https://github.com/CoolCyberBrain/webpack-query-loader/issues",
-  "homepage": "https://github.com/CoolCyberBrain/webpack-query-loader",
+  "repository": "Calvin-LL/webpack-query-loader",
+  "bugs": "https://github.com/Calvin-LL/webpack-query-loader/issues",
+  "homepage": "https://github.com/Calvin-LL/webpack-query-loader",
   "license": "MIT",
   "engines": {
     "node": ">= 10.13.0"
