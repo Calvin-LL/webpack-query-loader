@@ -1,155 +1,137 @@
-import webpack from "webpack";
-
-import compile from "./helpers/compile";
-import execute from "./helpers/execute";
-import getCompiler from "./helpers/getCompiler";
-import readAsset from "./helpers/readAsset";
+import WQLWebpackTestCompiler from "./helpers/WQLWebpackTestCompiler";
 
 describe.each([4, 5] as const)(
   'v%d "resourceQuery" option',
   (webpackVersion) => {
     it("should work with a query that is present", async () => {
-      const compiler = getCompiler(webpackVersion, {
-        use: "file-loader",
-        resourceQuery: "test",
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
+          use: "file-loader",
+          resourceQuery: "test",
+        },
       });
-      const stats = await compile(webpackVersion, compiler);
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with a query that is not present", async () => {
-      const compiler = getCompiler(
-        webpackVersion,
-        {
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
           use: "file-loader",
           resourceQuery: "test2",
         },
-        true
-      );
-      const stats = await compile(webpackVersion, compiler);
+        useUrlLoader: true,
+      });
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with a negative query that is present", async () => {
-      const compiler = getCompiler(
-        webpackVersion,
-        {
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
           use: "file-loader",
           resourceQuery: "!test",
         },
-        true
-      );
-      const stats = await compile(webpackVersion, compiler);
+        useUrlLoader: true,
+      });
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with a negative query that is not present", async () => {
-      const compiler = getCompiler(webpackVersion, {
-        use: "file-loader",
-        resourceQuery: "!test3",
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
+          use: "file-loader",
+          resourceQuery: "!test3",
+        },
       });
-      const stats = await compile(webpackVersion, compiler);
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with multiple queries, both true", async () => {
-      const compiler = getCompiler(webpackVersion, {
-        use: "file-loader",
-        resourceQuery: ["!test3", "test"],
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
+          use: "file-loader",
+          resourceQuery: ["!test3", "test"],
+        },
       });
-      const stats = await compile(webpackVersion, compiler);
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with multiple queries, one false", async () => {
-      const compiler = getCompiler(
-        webpackVersion,
-        {
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
           use: "file-loader",
           resourceQuery: ["!test3", "!test"],
         },
-        true
-      );
-      const stats = await compile(webpackVersion, compiler);
+        useUrlLoader: true,
+      });
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with multiple queries, both false", async () => {
-      const compiler = getCompiler(
-        webpackVersion,
-        {
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
           use: "file-loader",
           resourceQuery: ["test3", "!test"],
         },
-        true
-      );
-      const stats = await compile(webpackVersion, compiler);
+        useUrlLoader: true,
+      });
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with a function that returns false", async () => {
-      const compiler = getCompiler(
-        webpackVersion,
-        {
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
           use: "file-loader",
           resourceQuery: () => false,
         },
-        true
-      );
-      const stats = await compile(webpackVersion, compiler);
+        useUrlLoader: true,
+      });
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should work with a function that returns true", async () => {
-      const compiler = getCompiler(webpackVersion, {
-        use: "file-loader",
-        resourceQuery: () => true,
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      const bundle = await compiler.compile({
+        loaderOptions: {
+          use: "file-loader",
+          resourceQuery: () => true,
+        },
       });
-      const stats = await compile(webpackVersion, compiler);
 
-      expect(
-        execute(readAsset("main.bundle.js", compiler, stats as webpack.Stats))
-      ).toMatchSnapshot("result");
+      expect(bundle.execute("main.js")).toMatchSnapshot("result");
     });
 
     it("should call the function with the correct arguments", async () => {
       const mockResourceQuery = jest.fn().mockReturnValue(true);
 
-      const compiler = getCompiler(webpackVersion, {
-        use: "file-loader",
-        resourceQuery: function (
-          resource: string,
-          resourceQuery: string,
-          query: object
-        ) {
-          return mockResourceQuery(resource, resourceQuery, query);
+      const compiler = new WQLWebpackTestCompiler({ webpackVersion });
+      await compiler.compile({
+        loaderOptions: {
+          use: "file-loader",
+          resourceQuery: function (
+            resource: string,
+            resourceQuery: string,
+            query: object
+          ) {
+            return mockResourceQuery(resource, resourceQuery, query);
+          },
         },
       });
-      await compile(webpackVersion, compiler);
 
       expect(mockResourceQuery).toHaveBeenCalled();
       expect(mockResourceQuery).toMatchSnapshot();
