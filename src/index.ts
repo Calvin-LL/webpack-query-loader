@@ -9,7 +9,11 @@ import schema from "./options.json";
 type RuleSetCondition =
   | string
   | string[]
-  | ((resource: string, resourceQuery: string, query: any) => boolean);
+  | ((
+      resource: string,
+      resourceQuery: string,
+      query: Record<string, unknown>
+    ) => boolean);
 
 interface RuleSetLoader {
   /**
@@ -185,7 +189,7 @@ function normalizeUse(
   use: RuleSetUseItem
 ): {
   loader: string;
-  options: any;
+  options: Record<string, unknown>;
 } {
   let loaderString;
   let options = {};
@@ -208,7 +212,7 @@ function normalizeLoader(
   originalOptions: RuleSetQuery
 ): {
   loader: string;
-  options: any;
+  options: Record<string, unknown>;
 } {
   let loaderName = loaderString;
   let options = {};
