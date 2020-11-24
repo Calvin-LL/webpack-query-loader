@@ -1,8 +1,5 @@
 import webpack from "webpack";
 
-import compile from "./helpers/compile";
-import getCompiler from "./helpers/getCompiler";
-
 import WQLWebpackTestCompiler from "./helpers/WQLWebpackTestCompiler";
 
 describe.each([4, 5] as const)("v%d validate options", (webpackVersion) => {
@@ -25,7 +22,7 @@ describe.each([4, 5] as const)("v%d validate options", (webpackVersion) => {
     key: string,
     value: any,
     type: "success" | "failure"
-  ) {
+  ): void {
     it(`should ${
       type === "success" ? "successfully validate" : "throw an error on"
     } the "${key}" option with ${JSON.stringify(value)} value`, async () => {

@@ -9,7 +9,7 @@ import schema from "./options.json";
 type RuleSetCondition =
   | string
   | string[]
-  | ((resource: string, resourceQuery: string, query: object) => boolean);
+  | ((resource: string, resourceQuery: string, query: any) => boolean);
 
 interface RuleSetLoader {
   /**
@@ -38,7 +38,7 @@ export function pitch(
   remainingRequest: string,
   precedingRequest: string,
   data: any
-) {
+): any {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
   const params = this.resourceQuery
     ? loaderUtils.parseQuery(this.resourceQuery)
@@ -87,7 +87,7 @@ export default function (
   this: loader.LoaderContext,
   source: string | Buffer,
   sourceMap?: RawSourceMap
-) {
+): any {
   const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
   const params = this.resourceQuery
     ? loaderUtils.parseQuery(this.resourceQuery)
@@ -130,7 +130,10 @@ export default function (
 }
 
 // from https://github.com/webpack/loader-runner/blob/master/lib/LoaderRunner.js
-function normalizeContent(source: string | Buffer, raw: boolean) {
+function normalizeContent(
+  source: string | Buffer,
+  raw: boolean
+): string | Buffer {
   if (!raw && Buffer.isBuffer(source)) return utf8BufferToString(source);
   else if (raw && typeof source === "string")
     return Buffer.from(source, "utf-8");
@@ -138,8 +141,8 @@ function normalizeContent(source: string | Buffer, raw: boolean) {
 }
 
 // from https://github.com/webpack/loader-runner/blob/master/lib/LoaderRunner.js
-function utf8BufferToString(buf: Buffer) {
-  var str = buf.toString("utf-8");
+function utf8BufferToString(buf: Buffer): string {
+  const str = buf.toString("utf-8");
   if (str.charCodeAt(0) === 0xfeff) {
     return str.substr(1);
   } else {
@@ -152,7 +155,7 @@ function checkConditions(
   resourceQuery: string,
   query: loaderUtils.OptionObject,
   resourceQueryConditions: RuleSetCondition
-) {
+): boolean {
   if (resourceQueryConditions === undefined) return true;
 
   if (typeof resourceQueryConditions === "function") {
@@ -168,7 +171,7 @@ function checkConditions(
   throw "resourceQuery Not Found";
 }
 
-function checkQueryParameter(parameter: string, query: object) {
+function checkQueryParameter(parameter: string, query: any): boolean {
   if (parameter.charAt(0) === "!") {
     const actualParameter = parameter.substring(1);
 
@@ -178,7 +181,12 @@ function checkQueryParameter(parameter: string, query: object) {
   }
 }
 
-function normalizeUse(use: RuleSetUseItem) {
+function normalizeUse(
+  use: RuleSetUseItem
+): {
+  loader: string;
+  options: any;
+} {
   let loaderString;
   let options = {};
 
@@ -195,7 +203,13 @@ function normalizeUse(use: RuleSetUseItem) {
 }
 
 // code from https://github.com/webpack-contrib/url-loader
-function normalizeLoader(loaderString: string, originalOptions: RuleSetQuery) {
+function normalizeLoader(
+  loaderString: string,
+  originalOptions: RuleSetQuery
+): {
+  loader: string;
+  options: any;
+} {
   let loaderName = loaderString;
   let options = {};
 

@@ -126,7 +126,7 @@ describe.each([4, 5] as const)(
           resourceQuery: function (
             resource: string,
             resourceQuery: string,
-            query: object
+            query: any
           ) {
             return mockResourceQuery(resource, resourceQuery, query);
           },
