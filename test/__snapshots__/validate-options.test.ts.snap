@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`v4 validate options should throw an error on the "resourceQuery" option with 0 value 1`] = `
-Array [
-  [ModuleBuildError: Module build failed (from <rootDir>/test-dist/cjs.js):
-ValidationError: Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
+"Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
  - options.resourceQuery should be one of these:
    string | [any, ...] | function
    -> A condition that needs to be satisfied before the loader runs
@@ -11,41 +9,24 @@ ValidationError: Invalid options object. Query Loader has been initialized using
     * options.resourceQuery should be a string.
     * options.resourceQuery should be an array:
       [any, ...]
-    * options.resourceQuery should be an instance of function.
-    at Object.validate (<rootDir>/node_modules/schema-utils/dist/validate.js:104:11)
-    at Object.pitch (<rootDir>/src/index.ts:53:3)],
-]
+    * options.resourceQuery should be an instance of function."
 `;
 
-exports[`v4 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `
-Array [
-  [ModuleBuildError: Module build failed (from <rootDir>/test-dist/cjs.js):
-Error: Loader Not Found
-    at normalizeUse (<rootDir>/src/index.ts:204:41)
-    at Object.pitch (<rootDir>/src/index.ts:69:64)],
-]
-`;
+exports[`v4 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `"Loader Not Found"`;
 
 exports[`v4 validate options should throw an error on the "use" option with true value 1`] = `
-Array [
-  [ModuleBuildError: Module build failed (from <rootDir>/test-dist/cjs.js):
-ValidationError: Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
+"Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
  - options.use should be one of these:
    string | object { loader?, options?, … }
    -> Loader
    Details:
     * options.use should be a string.
     * options.use should be an object:
-      object { loader?, options?, … }
-    at Object.validate (<rootDir>/node_modules/schema-utils/dist/validate.js:104:11)
-    at Object.pitch (<rootDir>/src/index.ts:53:3)],
-]
+      object { loader?, options?, … }"
 `;
 
 exports[`v5 validate options should throw an error on the "resourceQuery" option with 0 value 1`] = `
-Array [
-  [ModuleBuildError: Module build failed (from ../../test-dist/cjs.js):
-ValidationError: Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
+"Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
  - options.resourceQuery should be one of these:
    string | [any, ...] | function
    -> A condition that needs to be satisfied before the loader runs
@@ -53,33 +34,18 @@ ValidationError: Invalid options object. Query Loader has been initialized using
     * options.resourceQuery should be a string.
     * options.resourceQuery should be an array:
       [any, ...]
-    * options.resourceQuery should be an instance of function.
-    at Object.validate (<rootDir>/node_modules/schema-utils/dist/validate.js:104:11)
-    at Object.pitch (<rootDir>/src/index.ts:53:3)],
-]
+    * options.resourceQuery should be an instance of function."
 `;
 
-exports[`v5 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `
-Array [
-  [ModuleBuildError: Module build failed (from ../../test-dist/cjs.js):
-Error: Loader Not Found
-    at normalizeUse (<rootDir>/src/index.ts:204:41)
-    at Object.pitch (<rootDir>/src/index.ts:69:64)],
-]
-`;
+exports[`v5 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `"Loader Not Found"`;
 
 exports[`v5 validate options should throw an error on the "use" option with true value 1`] = `
-Array [
-  [ModuleBuildError: Module build failed (from ../../test-dist/cjs.js):
-ValidationError: Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
+"Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
  - options.use should be one of these:
    string | object { loader?, options?, … }
    -> Loader
    Details:
     * options.use should be a string.
     * options.use should be an object:
-      object { loader?, options?, … }
-    at Object.validate (<rootDir>/node_modules/schema-utils/dist/validate.js:104:11)
-    at Object.pitch (<rootDir>/src/index.ts:53:3)],
-]
+      object { loader?, options?, … }"
 `;

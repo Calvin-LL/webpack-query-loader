@@ -28,7 +28,7 @@ describe.each([4, 5] as const)("v%d validate options", (webpackVersion) => {
     } the "${key}" option with ${JSON.stringify(value)} value`, async () => {
       const compiler = new WQLWebpackTestCompiler({ webpackVersion });
 
-      let stats: webpack.Stats | undefined;
+      let stats;
 
       try {
         stats = (
@@ -42,12 +42,16 @@ describe.each([4, 5] as const)("v%d validate options", (webpackVersion) => {
         ).stats;
       } finally {
         if (type === "success") {
-          expect(stats!.hasErrors()).toBe(false);
+          expect((stats as webpack.Stats).hasErrors()).toBe(false);
         } else if (type === "failure") {
-          const errors = stats!.compilation.errors;
+          const {
+            compilation: { errors },
+          } = stats as any;
 
           expect(errors).toHaveLength(1);
-          expect(errors).toMatchSnapshot();
+          expect(() => {
+            throw new Error(errors[0].error.message);
+          }).toThrowErrorMatchingSnapshot();
         }
       }
     }, 60000);
