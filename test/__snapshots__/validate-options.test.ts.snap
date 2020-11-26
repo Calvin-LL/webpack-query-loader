@@ -12,7 +12,7 @@ exports[`v4 validate options should throw an error on the "resourceQuery" option
     * options.resourceQuery should be an instance of function."
 `;
 
-exports[`v4 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `"(Emitted value instead of an instance of Error) Loader Not Found"`;
+exports[`v4 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `"Loader Not Found"`;
 
 exports[`v4 validate options should throw an error on the "use" option with true value 1`] = `
 "Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.
@@ -37,7 +37,7 @@ exports[`v5 validate options should throw an error on the "resourceQuery" option
     * options.resourceQuery should be an instance of function."
 `;
 
-exports[`v5 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `"(Emitted value instead of an instance of Error) Loader Not Found"`;
+exports[`v5 validate options should throw an error on the "use" option with {"options":{"name":"[path][name].[ext]"}} value 1`] = `"Loader Not Found"`;
 
 exports[`v5 validate options should throw an error on the "use" option with true value 1`] = `
 "Invalid options object. Query Loader has been initialized using an options object that does not match the API schema.

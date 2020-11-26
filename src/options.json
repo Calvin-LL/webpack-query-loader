@@ -1,6 +1,7 @@
 {
   "additionalProperties": true,
   "type": "object",
+  "required": ["use"],
   "properties": {
     "use": {
       "description": "Loader",

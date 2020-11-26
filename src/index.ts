@@ -30,9 +30,9 @@ type RuleSetUseItem = string | RuleSetLoader;
 
 type RuleSetQuery = { [k: string]: any };
 
-interface OPTIONS {
-  use: RuleSetUseItem;
-  resourceQuery: RuleSetCondition;
+interface Options {
+  readonly use: RuleSetUseItem;
+  readonly resourceQuery?: RuleSetCondition;
 }
 
 export const raw = true;
@@ -43,10 +43,10 @@ export function pitch(
   precedingRequest: string,
   data: any
 ): any {
-  const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
+  const options = loaderUtils.getOptions(this) as Readonly<Options> | null;
   const params = this.resourceQuery
     ? loaderUtils.parseQuery(this.resourceQuery)
-    : undefined;
+    : {};
 
   if (!options) throw "Options Not Found";
 
@@ -58,7 +58,7 @@ export function pitch(
   const conditionsMet = checkConditions(
     this.resource,
     this.resourceQuery,
-    params ?? {},
+    params,
     options.resourceQuery
   );
 
@@ -92,10 +92,10 @@ export default function (
   source: string | Buffer,
   sourceMap?: RawSourceMap
 ): any {
-  const options = loaderUtils.getOptions(this) as Readonly<OPTIONS> | null;
+  const options = loaderUtils.getOptions(this) as Readonly<Options> | null;
   const params = this.resourceQuery
     ? loaderUtils.parseQuery(this.resourceQuery)
-    : undefined;
+    : {};
 
   if (!options) throw "Options Not Found";
 
@@ -107,7 +107,7 @@ export default function (
   const conditionsMet = checkConditions(
     this.resource,
     this.resourceQuery,
-    params ?? {},
+    params,
     options.resourceQuery
   );
 
@@ -158,7 +158,7 @@ function checkConditions(
   resource: string,
   resourceQuery: string,
   query: loaderUtils.OptionObject,
-  resourceQueryConditions: RuleSetCondition
+  resourceQueryConditions: Options["resourceQuery"]
 ): boolean {
   if (resourceQueryConditions === undefined) return true;
 
@@ -201,7 +201,7 @@ function normalizeUse(
     if (use.options) options = use.options;
   }
 
-  if (loaderString === undefined) throw "Loader Not Found";
+  if (loaderString === undefined) throw new Error("Loader Not Found");
 
   return normalizeLoader(loaderString, options);
 }
