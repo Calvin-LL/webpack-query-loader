@@ -8,7 +8,7 @@ import {
 
 interface WQLCompileOptions extends Omit<CompileOptions, "entryFilePath"> {
   entryFileName?: string;
-  loaderOptions?: any;
+  loaderOptions?: Record<string, any>;
   useUrlLoader?: boolean;
 }
 
