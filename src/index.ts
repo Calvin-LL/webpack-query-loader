@@ -48,7 +48,7 @@ export function pitch(
     ? loaderUtils.parseQuery(this.resourceQuery)
     : {};
 
-  if (!options) throw "Options Not Found";
+  if (!options) throw new Error("Options Not Found");
 
   validate(schema as Schema, options, {
     name: "Query Loader",
@@ -97,7 +97,7 @@ export default function (
     ? loaderUtils.parseQuery(this.resourceQuery)
     : {};
 
-  if (!options) throw "Options Not Found";
+  if (!options) throw new Error("Options Not Found");
 
   validate(schema as Schema, options, {
     name: "Query Loader",
