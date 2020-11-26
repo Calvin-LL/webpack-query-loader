@@ -43,12 +43,10 @@ export function pitch(
   precedingRequest: string,
   data: any
 ): any {
-  const options = loaderUtils.getOptions(this) as Readonly<Options> | null;
+  const options = (loaderUtils.getOptions(this) as Readonly<Options>) || {};
   const params = this.resourceQuery
     ? loaderUtils.parseQuery(this.resourceQuery)
     : {};
-
-  if (!options) throw new Error("Options Not Found");
 
   validate(schema as Schema, options, {
     name: "Query Loader",
@@ -92,12 +90,10 @@ export default function (
   source: string | Buffer,
   sourceMap?: RawSourceMap
 ): any {
-  const options = loaderUtils.getOptions(this) as Readonly<Options> | null;
+  const options = (loaderUtils.getOptions(this) as Readonly<Options>) || {};
   const params = this.resourceQuery
     ? loaderUtils.parseQuery(this.resourceQuery)
     : {};
-
-  if (!options) throw new Error("Options Not Found");
 
   validate(schema as Schema, options, {
     name: "Query Loader",
