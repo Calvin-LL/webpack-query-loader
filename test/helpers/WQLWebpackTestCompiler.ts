@@ -36,7 +36,13 @@ export default class WQLWebpackTestCompiler extends WebpackTestCompiler {
                 ]
               : []),
             {
-              loader: path.resolve(__dirname, "..", "..", "dist", "cjs.js"),
+              loader: path.resolve(
+                __dirname,
+                "..",
+                "..",
+                "test-dist",
+                "cjs.js"
+              ),
               options: loaderOptions,
             },
           ],
@@ -45,14 +51,26 @@ export default class WQLWebpackTestCompiler extends WebpackTestCompiler {
           test: /\.txt/i,
           use: [
             {
-              loader: path.resolve(__dirname, "..", "..", "dist", "cjs.js"),
+              loader: path.resolve(
+                __dirname,
+                "..",
+                "..",
+                "test-dist",
+                "cjs.js"
+              ),
               options: {
                 resourceQuery: "test",
                 use: path.resolve(fixturesDir, "testLoader1.js"),
               },
             },
             {
-              loader: path.resolve(__dirname, "..", "..", "dist", "cjs.js"),
+              loader: path.resolve(
+                __dirname,
+                "..",
+                "..",
+                "test-dist",
+                "cjs.js"
+              ),
               options: {
                 resourceQuery: "test",
                 use: path.resolve(fixturesDir, "testLoader2.js"),

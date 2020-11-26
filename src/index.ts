@@ -172,7 +172,7 @@ function checkConditions(
     return checkQueryParameter(resourceQueryConditions, query);
   }
 
-  throw "resourceQuery Not Found";
+  throw new Error("resourceQuery Not Found");
 }
 
 function checkQueryParameter(parameter: string, query: any): boolean {

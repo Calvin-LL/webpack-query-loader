@@ -14,14 +14,14 @@ Object {
 
 exports[`v4 complex loaders should work when multiple loaders with pitch stage is present: warnings 1`] = `
 Array [
-  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
+  [ModuleWarning: Module Warning (from <rootDir>/test-dist/cjs.js):
 loader1-main test],
-  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
-loader1-pitch <rootDir>/dist/cjs.js??ref--5-1!<rootDir>/test/fixtures/test.txt?test  {}],
-  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
+  [ModuleWarning: Module Warning (from <rootDir>/test-dist/cjs.js):
+loader1-pitch <rootDir>/test-dist/cjs.js??ref--5-1!<rootDir>/test/fixtures/test.txt?test  {}],
+  [ModuleWarning: Module Warning (from <rootDir>/test-dist/cjs.js):
 loader2-main test],
-  [ModuleWarning: Module Warning (from <rootDir>/dist/cjs.js):
-loader2-pitch <rootDir>/test/fixtures/test.txt?test <rootDir>/dist/cjs.js??ref--5-0 {}],
+  [ModuleWarning: Module Warning (from <rootDir>/test-dist/cjs.js):
+loader2-pitch <rootDir>/test/fixtures/test.txt?test <rootDir>/test-dist/cjs.js??ref--5-0 {}],
 ]
 `;
 
@@ -29,13 +29,13 @@ exports[`v5 complex loaders should work when multiple loaders with pitch stage i
 
 exports[`v5 complex loaders should work when multiple loaders with pitch stage is present: warnings 1`] = `
 Array [
-  [ModuleWarning: Module Warning (from ../../dist/cjs.js):
+  [ModuleWarning: Module Warning (from ../../test-dist/cjs.js):
 loader1-main test],
-  [ModuleWarning: Module Warning (from ../../dist/cjs.js):
-loader1-pitch <rootDir>/dist/cjs.js??ruleSet[1].rules[1].use[1]!<rootDir>/test/fixtures/test.txt?test  {}],
-  [ModuleWarning: Module Warning (from ../../dist/cjs.js):
+  [ModuleWarning: Module Warning (from ../../test-dist/cjs.js):
+loader1-pitch <rootDir>/test-dist/cjs.js??ruleSet[1].rules[1].use[1]!<rootDir>/test/fixtures/test.txt?test  {}],
+  [ModuleWarning: Module Warning (from ../../test-dist/cjs.js):
 loader2-main test],
-  [ModuleWarning: Module Warning (from ../../dist/cjs.js):
-loader2-pitch <rootDir>/test/fixtures/test.txt?test <rootDir>/dist/cjs.js??ruleSet[1].rules[1].use[0] {}],
+  [ModuleWarning: Module Warning (from ../../test-dist/cjs.js):
+loader2-pitch <rootDir>/test/fixtures/test.txt?test <rootDir>/test-dist/cjs.js??ruleSet[1].rules[1].use[0] {}],
 ]
 `;
