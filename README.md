@@ -4,7 +4,7 @@
 
 Run loaders depending on the query string.
 
-If you're trying to use `resourceQuery` in webpack v4 you're in the right place. If you're using [webpack v5](https://github.com/webpack/webpack/issues/10552), consider using the built in `resourceQuery` instead of this loader
+If you're trying to use `resourceQuery` in webpack v4 but it doesn't work as documented, you're in the right place. If you're using [webpack v5](https://github.com/webpack/webpack/issues/10552), use the built in `resourceQuery` instead of this loader
 
 This loader is an attempt to solve problems like [this issue](https://github.com/webpack/webpack/issues/3497).
 
