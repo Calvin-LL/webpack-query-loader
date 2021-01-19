@@ -1,19 +1,19 @@
 import path from "path";
 
 import {
-  CompileOptions,
   WebpackTestBundle,
   WebpackTestCompiler,
 } from "@calvin-l/webpack-loader-test-util";
 
-interface WQLCompileOptions extends Omit<CompileOptions, "entryFilePath"> {
+interface WQLCompileOptions
+  extends Omit<WebpackTestCompiler.CompileOptions, "entryFilePath"> {
   entryFileName?: string;
   loaderOptions?: Record<string, any>;
   useUrlLoader?: boolean;
 }
 
-export default class WQLWebpackTestCompiler extends WebpackTestCompiler {
-  compile(options: WQLCompileOptions = {}): Promise<WebpackTestBundle> {
+export default class WQLWebpackTestCompiler extends WebpackTestCompiler.default {
+  compile(options: WQLCompileOptions = {}): Promise<WebpackTestBundle.default> {
     const {
       loaderOptions = {},
       entryFileName = "simple.js",
