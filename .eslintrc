@@ -12,7 +12,6 @@
     "no-unused-vars": "off",
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-debugger": "error",
-    "no-unused-vars": "error",
     "@typescript-eslint/no-empty-function": "error",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-explicit-any": "off",
