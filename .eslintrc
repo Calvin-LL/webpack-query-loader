@@ -9,6 +9,7 @@
   "ignorePatterns": ["dist/", "test-dist/"],
   "rules": {
     "no-undef": "off",
+    "no-unused-vars": "off",
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-debugger": "error",
     "no-unused-vars": "error",
